@@ -1,0 +1,5 @@
+Hay dos animaciones de disparo
+
+preferiblemente usen "Disparo Survivor"
+
+Pero si da problemas usen "Firing Rifle survivor"
