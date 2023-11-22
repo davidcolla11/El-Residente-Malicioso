@@ -9,6 +9,8 @@ public class DisparoRay : MonoBehaviour
     public Transform casketPoint;
     public int damage = 25;
 
+    public Animator animar;
+
     public LineRenderer lineRenderer;
 
     private bool single = true;
@@ -16,37 +18,38 @@ public class DisparoRay : MonoBehaviour
     public GameObject shootFX, bloodFX;
     public GameObject casquillo;
 
-    private float automatico;
     float tiemDisparo = 1f;
+
+    public static bool isAiming = false;
 
     void Start()
     {
-        automatico = tiemDisparo;
+
     }
 
-    void Update()
+   void Update()
+{
+    if (Input.GetMouseButtonDown(1))
     {
-        if (Input.GetButtonDown("Change"))
-        {
-            single = !single;
-        }
-
-        if (Input.GetButtonDown("Fire1") && single)
-        {
-            StartCoroutine(Disparo());
-        }
-
-        if (Input.GetButtonDown("Fire1") && !single)
-        {
-            if (automatico <= 0)
-            {
-                StartCoroutine(Disparo());
-                automatico = tiemDisparo;
-            }
-        }
-
-        automatico -= Time.deltaTime;
+        isAiming = true;
+        animar.SetBool("Aim", true);
     }
+    // Desactivar la animación de "Aim" cuando se suelta el clic derecho
+    if (Input.GetMouseButtonUp(1))
+    {
+        isAiming = false;
+        animar.SetBool("Aim", false);
+    }
+
+
+    if (Input.GetButtonDown("Fire1") && single)
+    {
+        StartCoroutine(Disparo());
+        Debug.Log("disparo");
+    }
+                      
+}
+
 
      IEnumerator Disparo()
     {
