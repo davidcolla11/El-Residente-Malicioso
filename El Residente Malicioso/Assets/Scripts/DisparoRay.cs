@@ -35,7 +35,7 @@ public class DisparoRay : MonoBehaviour
         isAiming = true;
         animar.SetBool("Aim", true);
     }
-    // Desactivar la animación de "Aim" cuando se suelta el clic derecho
+
     if (Input.GetMouseButtonUp(1))
     {
         isAiming = false;
