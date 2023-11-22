@@ -22,6 +22,7 @@ public class DisparoRay : MonoBehaviour
 
     public static bool isAiming = false;
 
+
     void Start()
     {
 
@@ -44,10 +45,15 @@ public class DisparoRay : MonoBehaviour
 
     if (Input.GetButtonDown("Fire1") && single)
     {
+        animar.SetBool("Shoot", true);
         StartCoroutine(Disparo());
         Debug.Log("disparo");
     }
-                      
+
+    if (Input.GetButtonUp("Fire1"))
+    {
+        animar.SetBool("Shoot", false);
+    }            
 }
 
 
