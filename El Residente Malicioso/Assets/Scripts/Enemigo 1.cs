@@ -11,6 +11,7 @@ public class Enemigo1 : MonoBehaviour
     public float grado;
 
     public GameObject target;
+    public bool atacando;
     void Start()
     {
         ani = GetComponent<Animator>();
@@ -58,6 +59,10 @@ public class Enemigo1 : MonoBehaviour
         }
         else
      {
+        if (Vector3.Distance(transform.position, target.transform.position) > 1 && !atacando)
+        {
+            
+        
         var lookPos = target.transform.position - transform.position;
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
@@ -65,9 +70,23 @@ public class Enemigo1 : MonoBehaviour
         ani.SetBool("walk", true);
 
         transform.Translate(Vector3.forward * 1 * Time.deltaTime);
+
+        ani.SetBool("attack", false);
+        }
+        else
+        {
+            ani.SetBool("walk", false);
+
+            ani.SetBool("attack", true);
+            atacando = true;
+        }
      }
      }
      
+     public void Final_Ani(){
+        ani.SetBool("attack", false);
+        atacando = false;
+     }
     
     void Update()
     {    

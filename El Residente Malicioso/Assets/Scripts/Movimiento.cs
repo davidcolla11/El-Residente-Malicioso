@@ -36,5 +36,13 @@ public class Movimiento : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider coll)
+    {
+        if (coll.CompareTag("arma"))
+        {
+            print("Daño");
+        }
+    }
+
 
 }
